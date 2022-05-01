@@ -179,8 +179,8 @@ public class LoginFragment extends Fragment{
         Pattern lowercase = Pattern.compile("[a-z]");
         Pattern specials = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^*()%!-]");
 
-        if(usernameToCheck.length() < 12){
-            text = "Username too short! Please enter at least 12 characters.";
+        if(usernameToCheck.length() < 3){
+            text = "Username too short! Please enter at least 3 characters.";
         }
         else if(!passwordToCheck.equals(passwordConfirm)){
             text = "Passwords do not match.";

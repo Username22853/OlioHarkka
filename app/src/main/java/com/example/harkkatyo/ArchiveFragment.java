@@ -204,7 +204,6 @@ public class ArchiveFragment extends Fragment {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int style = AlertDialog.THEME_TRADITIONAL;
 
         datePickerDialog = new DatePickerDialog(this.getActivity(),
                 com.google.android.material.R.style.ThemeOverlay_MaterialComponents_MaterialCalendar_Fullscreen, dateSetListener,year,month,day);
