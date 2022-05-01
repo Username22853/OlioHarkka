@@ -1,6 +1,5 @@
 package com.example.harkkatyo;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,7 +43,7 @@ public class LoginFragment extends Fragment{
         buttonGoCreateUser.setOnClickListener(view -> showCreateUserDialog());
         buttonLogin = (Button) view.findViewById(R.id.loginButton);
         buttonLogin.setOnClickListener(view -> login());
-        if(Info.getInstance().getLoggedIn()){ //check to see if we are logged in or not
+        if(Info.getInstance().getLoggedIn()){ //check to see if user is logged in or not
             buttonLogin.setText("Log out");
             editTextUsername.setText(Info.getInstance().getLoggedInAs());
         }else{
@@ -55,7 +53,7 @@ public class LoginFragment extends Fragment{
         editTextUsername.setFocusable(!Info.getInstance().getLoggedIn()); //to declare if writable
         editTextUsername.setFocusableInTouchMode(!Info.getInstance().getLoggedIn());
         editTextPassword.setFocusableInTouchMode(!Info.getInstance().getLoggedIn());
-        buttonGoCreateUser.setEnabled(!Info.getInstance().getLoggedIn());
+        buttonGoCreateUser.setEnabled(!Info.getInstance().getLoggedIn()); //cant create user when logged in
         return view;
     }
 
@@ -66,7 +64,7 @@ public class LoginFragment extends Fragment{
             Info.getInstance().setLoggedIn(false);
             Info.getInstance().setLoggedInAs("");
             buttonLogin.setText("Log in");
-            editTextUsername.setText("");
+            editTextUsername.setText("");//empty fields
             editTextPassword.setText("");
             editTextPassword.setFocusable(!Info.getInstance().getLoggedIn());//use the boolean from info
             editTextUsername.setFocusable(!Info.getInstance().getLoggedIn());//to declare if writable
@@ -100,7 +98,7 @@ public class LoginFragment extends Fragment{
                 Info.getInstance().setLoggedIn(true);
                 Info.getInstance().setLoggedInAs(unEntry);
                 editTextPassword.setFocusable(!Info.getInstance().getLoggedIn());//use the boolean from info
-                editTextUsername.setFocusable(!Info.getInstance().getLoggedIn());//to declare if writable
+                editTextUsername.setFocusable(!Info.getInstance().getLoggedIn());//to declare if field is editable
                 editTextUsername.setFocusableInTouchMode(!Info.getInstance().getLoggedIn());
                 editTextPassword.setFocusableInTouchMode(!Info.getInstance().getLoggedIn());
                 buttonLogin.setText("Log out");

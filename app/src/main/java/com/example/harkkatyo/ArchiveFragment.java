@@ -1,6 +1,5 @@
 package com.example.harkkatyo;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -86,14 +85,14 @@ public class ArchiveFragment extends Fragment {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             readMovie = listView.getItemAtPosition(i);
             saveReviewButton.setEnabled(true);
-            if (readMovie instanceof ReviewedMovie){
+            if (readMovie instanceof ReviewedMovie){    //check whether already reviewed
                 selectedMovie =(ReviewedMovie) readMovie;
                 chooseDateButton.setText(((ReviewedMovie) selectedMovie).getReviewDate());
                 pickedDate=((ReviewedMovie) selectedMovie).getReviewDate();
                 ratingBar.setRating(Float.parseFloat(((ReviewedMovie) selectedMovie).getReviewStars()));
                 movieComment.setText(((ReviewedMovie) selectedMovie).getReviewComment());
             }else{
-                selectedMovie =(Movie) readMovie;
+                selectedMovie =(Movie) readMovie; //case of not reviewed
                 clearReview();
             }
         });
@@ -110,6 +109,7 @@ public class ArchiveFragment extends Fragment {
 
             NodeList nodeList = doc.getDocumentElement().getElementsByTagName("Show");
             boolean matchFound;
+            //movies that are already in the file reviewed/not reviewed, wont be taken from internet
             for (int i = 0; i < nodeList.getLength();i++){
                 Node node = nodeList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE){
@@ -119,7 +119,7 @@ public class ArchiveFragment extends Fragment {
                     matchFound = false;
                     for (Object movie: movieArray){
                         if(((Movie) movie).getMovieName().equals(tempMovieName)){
-                            matchFound =true;
+                            matchFound =true; //check if movie already in users file
                             break;
                         }
                     }
@@ -127,7 +127,7 @@ public class ArchiveFragment extends Fragment {
                         Movie temp = new Movie(tempMovieName);
                         movieArray.add(temp);
                         addMovieToFile(temp);
-                    }
+                    } //new movies added as non-reviewed movies to user file
                 }
             }
         } catch (ParserConfigurationException | IOException | SAXException e) {

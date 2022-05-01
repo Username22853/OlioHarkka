@@ -13,7 +13,6 @@ import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        StrictMode.setThreadPolicy(policy); //internet access
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.layout);
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public static void hideKeyboard(Activity activity) {
+    public static void hideKeyboard(Activity activity) { //method for all fragments to keep keyboard shut when necessary
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = activity.getCurrentFocus();
         if (view == null) {

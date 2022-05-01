@@ -1,6 +1,5 @@
 package com.example.harkkatyo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +21,6 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarFragment extends Fragment {
@@ -66,14 +64,14 @@ public class CalendarFragment extends Fragment {
         });
         return view;
     }
-    private void checkForMovie(String checkDate){
+    private void checkForMovie(String checkDate){ //check if movie was seen/rated on chosen date
         movieArray.clear();
         try {
             InputStream inputs = this.getActivity().openFileInput(movieFile);
             BufferedReader br = new BufferedReader(new InputStreamReader(inputs));
             String row = "";
             String[] rowContents ={};
-            while ((row = br.readLine()) != null) {
+            while ((row = br.readLine()) != null) { //row = user;name;date;stars;comment(optional)
                 rowContents = row.split(";");
                 if(Info.getInstance().getLoggedInAs().equals(rowContents[0]) && rowContents.length>3){
                     if(rowContents[2].equals(checkDate) && rowContents.length>4){

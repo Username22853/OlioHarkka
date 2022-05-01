@@ -54,7 +54,7 @@ public class DailyMoviesFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Theater selectedTheater = (Theater) adapterView.getSelectedItem();
-                getDailyMovies(selectedTheater);
+                getDailyMovies(selectedTheater); //get movies based on Finnkino theater id
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
