@@ -169,7 +169,6 @@ public class ArchiveFragment extends Fragment {
                         Movie temp = new Movie(rowContents[1]);
                         movieArray.add(temp);
                     }
-
                 }
             }
             inputs.close();
