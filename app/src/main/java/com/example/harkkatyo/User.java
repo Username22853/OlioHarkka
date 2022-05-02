@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 public class User  {
     private String username ="";
     private String password ="";
-    private String filename = "users.csv";
+    private String filename = "users.csv"; // here we save the users
     private Context context;
 
     public User(String un, String pw, Context context){
